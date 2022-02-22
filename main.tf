@@ -75,11 +75,11 @@ module main_container_definition {
   [
     {
       name  = "PORT"
-      value = var.service_port
+      value = var.service_external_port
     },
     {
       name  = "APP_PORT"
-      value = var.service_port
+      value = var.service_external_port
     }
   ])
 
