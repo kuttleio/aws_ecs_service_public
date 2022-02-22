@@ -11,6 +11,9 @@ variable security_groups {}
 variable aws_lb_certificate_arn {}
 variable capacity_provider_name {}
 
+variable service_external_port {}
+variable service_internal_port {}
+
 variable aws_lb_out_port {
   type    = number
   default = null
