@@ -56,9 +56,9 @@ variable task_memory {
   type    = number
   default = 256
 }
-variable service_port {
-  type    = number
-}
+# variable service_port {
+#   type    = number
+# }
 variable entrypoint {
   type    = list(string)
   default = null
