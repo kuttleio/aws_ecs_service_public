@@ -45,7 +45,7 @@ resource aws_ecs_service main {
   load_balancer {
     target_group_arn  = aws_lb_target_group.main.arn
     container_name    = var.service_name
-    container_port    = var.service_external_port
+    container_port    = var.service_internal_port
   }
 }
 
@@ -276,13 +276,13 @@ resource aws_lb_target_group main {
     timeout             = 5
     interval            = 10
     path                = "/health"
-    port                = var.service_external_port
+    port                = var.service_internal_port
   }
 }
 
 resource aws_lb_listener public {
     load_balancer_arn = data.aws_lb.passed_on.arn
-    port              = var.service_internal_port
+    port              = var.service_external_port
     protocol          = "HTTP"
     depends_on        = [data.aws_lb.passed_on]
 
