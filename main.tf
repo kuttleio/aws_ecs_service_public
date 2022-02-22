@@ -278,7 +278,7 @@ resource aws_lb_target_group main {
     timeout             = 5
     interval            = 10
     path                = "/health"
-    port                = var.service_internal_port
+    port                = var.service_external_port
   }
 }
 
