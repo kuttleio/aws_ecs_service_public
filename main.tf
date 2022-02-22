@@ -47,6 +47,8 @@ resource aws_ecs_service main {
     container_name    = var.service_name
     container_port    = var.service_internal_port
   }
+
+  depends_on = [data.aws_lb.passed_on]
 }
 
 
