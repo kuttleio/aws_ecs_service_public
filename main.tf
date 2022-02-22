@@ -281,10 +281,10 @@ resource aws_lb_target_group main {
 }
 
 resource aws_lb_listener public {
-    load_balancer_arn = aws_lb.public.arn
+    load_balancer_arn = data.aws_lb.passed_on.arn
     port              = var.service_internal_port
     protocol          = "HTTP"
-    depends_on        = [aws_lb.public]
+    depends_on        = [data.aws_lb.passed_on]
 
     default_action {
         type = "redirect"
