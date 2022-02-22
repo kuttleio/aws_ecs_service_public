@@ -282,6 +282,19 @@ resource aws_lb_target_group main {
   }
 }
 
+resource "aws_lb_listener" "aws_ecs_fargate_service_aws_lb_listener" {
+  load_balancer_arn = data.aws_lb.passed_on.arn
+  port              = var.service_external_port
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-TLS-1-2-Ext-2018-06"
+  certificate_arn   = var.aws_lb_certificate_arn
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.main.arn
+  }
+}
+
 resource aws_lb_listener public {
     load_balancer_arn = data.aws_lb.passed_on.arn
     port              = var.service_internal_port
