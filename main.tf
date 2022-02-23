@@ -295,39 +295,39 @@ resource "aws_lb_listener" "aws_ecs_fargate_service_aws_lb_listener" {
   }
 }
 
-resource aws_lb_listener public {
-    load_balancer_arn = data.aws_lb.passed_on.arn
-    port              = var.service_internal_port
-    protocol          = "HTTP"
-    depends_on        = [data.aws_lb.passed_on]
+# resource aws_lb_listener public {
+#     load_balancer_arn = data.aws_lb.passed_on.arn
+#     port              = var.service_internal_port
+#     protocol          = "HTTP"
+#     depends_on        = [data.aws_lb.passed_on]
 
-    default_action {
-        type = "redirect"
+#     default_action {
+#         type = "redirect"
 
-        redirect {
-            port        = var.service_external_port
-            protocol    = "HTTPS"
-            status_code = "HTTP_301"
-        }
-    }
-}
+#         redirect {
+#             port        = var.service_external_port
+#             protocol    = "HTTPS"
+#             status_code = "HTTP_301"
+#         }
+#     }
+# }
 
-resource aws_lb_listener_rule block_header {
-    listener_arn = aws_lb_listener.public.arn
-    priority = 100
+# resource aws_lb_listener_rule block_header {
+#     listener_arn = aws_lb_listener.public.arn
+#     priority = 100
 
-    condition {
-        http_header {
-            http_header_name = "X-Forwarded-Host"
-            values           = ["*"]
-        }
-    }
-    action {
-        type = "fixed-response"
-        fixed_response {
-            content_type = "text/plain"
-            message_body = "Invalid host header."
-            status_code = 400
-        }
-    }
-}
+#     condition {
+#         http_header {
+#             http_header_name = "X-Forwarded-Host"
+#             values           = ["*"]
+#         }
+#     }
+#     action {
+#         type = "fixed-response"
+#         fixed_response {
+#             content_type = "text/plain"
+#             message_body = "Invalid host header."
+#             status_code = 400
+#         }
+#     }
+# }
