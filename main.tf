@@ -45,7 +45,7 @@ resource aws_ecs_service main {
   load_balancer {
     target_group_arn  = aws_lb_target_group.main.arn
     container_name    = var.service_name
-    container_port    = var.service_external_port
+    container_port    = var.service_internal_port
   }
 
   depends_on = [data.aws_lb.passed_on]
