@@ -67,8 +67,8 @@ module main_container_definition {
   
   port_mappings = [
     {
-      containerPort = var.service_external_port
-      hostPort      = var.service_external_port
+      containerPort = var.service_internal_port
+      hostPort      = var.service_internal_port
       protocol      = "tcp"
     }
   ]
